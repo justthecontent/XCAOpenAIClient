@@ -27,7 +27,7 @@ final class XCAOpenAIClientTests: XCTestCase {
     }
     
     func testClientBaseURL() {
-        XCTAssertEqual(client.serverURL, URL(string: "https://api.openai.com/v1"), "Base URL should be set correctly")
+        XCTAssertEqual(client.configuration.serverURL, URL(string: "https://api.openai.com/v1"), "Base URL should be set correctly")
     }
     
     // Add more tests here as needed
