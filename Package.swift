@@ -43,6 +43,9 @@ let package = Package(
                     name: "OpenAPIGenerator",
                     package: "swift-openapi-generator"
                 )
-            ])
+            ]),
+        .testTarget(
+            name: "XCAOpenAIClientTests",
+            dependencies: ["XCAOpenAIClient"])
     ]
 )
