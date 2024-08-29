@@ -24,13 +24,9 @@ final class XCAOpenAIClientTests: XCTestCase {
     
     func testClientInitialization() {
         XCTAssertNotNil(client, "Client should be initialized")
-    }
-    
-    func testClientInitialization() {
-        XCTAssertNotNil(client, "Client should be initialized")
         // Note: We can't directly test the base URL as the Client type doesn't expose it.
         // Further testing might require making API calls or inspecting the client's behavior.
     }
     
-    // Add more tests here as needed
+    // TODO: Add more tests here as needed
 }
