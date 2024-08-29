@@ -1,13 +1,22 @@
 import XCTest
+import OpenAPIRuntime
+import OpenAPIURLSession
 @testable import XCAOpenAIClient
 
 final class XCAOpenAIClientTests: XCTestCase {
-    var client: XCAOpenAIClient!
+    var client: Client!
     
     override func setUp() {
         super.setUp()
         // Initialize the client with a mock API key
-        client = XCAOpenAIClient(apiKey: "mock-api-key")
+        let configuration = ClientConfiguration(
+            baseURL: URL(string: "https://api.openai.com/v1")!,
+            transport: URLSessionTransport()
+        )
+        client = Client(
+            configuration: configuration,
+            middlewares: [AuthMiddleware(apiKey: "mock-api-key")]
+        )
     }
     
     override func tearDown() {
@@ -20,7 +29,7 @@ final class XCAOpenAIClientTests: XCTestCase {
     }
     
     func testClientBaseURL() {
-        XCTAssertEqual(client.baseURL, URL(string: "https://api.openai.com/v1"), "Base URL should be set correctly")
+        XCTAssertEqual(client.configuration.baseURL, URL(string: "https://api.openai.com/v1"), "Base URL should be set correctly")
     }
     
     // Add more tests here as needed
