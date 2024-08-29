@@ -20,18 +20,15 @@ jobs:
 
   release:
     needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' || github.event_name == 'release'
+    if: github.event_name == 'release'
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Build
-      run: swift build -v -c release
-    - name: Create and Zip XCFramework
-      run: |
-        swift package generate-xcframework --output ./XCAOpenAIClient.xcframework
-        zip -r XCAOpenAIClient.xcframework.zip XCAOpenAIClient.xcframework
+    - name: Create XCFramework
+      uses: segment-integrations/swift-create-xcframework@1.0.0
+      with:
+        target: XCAOpenAIClient
     - name: Upload Release Asset
-      if: github.event_name == 'release'
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
