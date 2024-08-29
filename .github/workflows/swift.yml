@@ -1,0 +1,41 @@
+name: Swift
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  release:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: swift build -v
+    - name: Run tests
+      run: swift test -v
+
+  release:
+    needs: build
+    if: github.event_name == 'release'
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build
+      run: swift build -v -c release
+    - name: Create and Zip XCFramework
+      run: |
+        swift package generate-xcframework --output ./XCAOpenAIClient.xcframework
+        zip -r XCAOpenAIClient.xcframework.zip XCAOpenAIClient.xcframework
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./XCAOpenAIClient.xcframework.zip
+        asset_name: XCAOpenAIClient.xcframework.zip
+        asset_content_type: application/zip
