@@ -34,6 +34,10 @@ let package = Package(
                 ),
                 .product(name: "HTTPTypes", package: "swift-http-types")
             ],
+            resources: [
+                .process("openapi.yaml"),
+                .process("openapi-generator-config.yaml")
+            ],
             plugins: [
                 .plugin(
                     name: "OpenAPIGenerator",
