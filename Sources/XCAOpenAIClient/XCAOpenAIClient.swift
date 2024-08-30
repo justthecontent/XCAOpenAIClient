@@ -3,12 +3,12 @@ import OpenAPIRuntime
 import OpenAPIURLSession
 
 public struct OpenAIClient {
-    
     public let client: Client
-    private let urlSession = URLSession.shared
+	private let urlSession: URLSession
     private let apiKey: String
     
-    public init(apiKey: String) {
+	public init(apiKey: String, urlSession: URLSession = URLSession.shared) {
+		self.urlSession = urlSession
         self.client = Client(
             serverURL: try! Servers.server1(),
             transport: URLSessionTransport(),

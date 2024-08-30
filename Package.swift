@@ -18,7 +18,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-openapi-runtime", .upToNextMinor(from: "1.0.0-alpha.1")),
         .package(url: "https://github.com/apple/swift-openapi-urlsession", .upToNextMinor(from: "1.0.0-alpha.1")),
         .package(url: "https://github.com/apple/swift-http-types", .upToNextMinor(from: "1.0.0")),
-        
+        .package(url: "https://github.com/jamesrochabrun/SwiftOpenAI", branch: "main"),
     ],
     targets: [
         .target(
@@ -32,7 +32,8 @@ let package = Package(
                     name: "OpenAPIURLSession",
                     package: "swift-openapi-urlsession"
                 ),
-                .product(name: "HTTPTypes", package: "swift-http-types")
+                .product(name: "HTTPTypes", package: "swift-http-types"),
+                .product(name: "SwiftOpenAI", package: "SwiftOpenAI")
             ],
             resources: [
                 .process("openapi.yaml"),

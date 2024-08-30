@@ -82,6 +82,15 @@
       }
     },
     {
+      "identity" : "swiftopenai",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/jamesrochabrun/SwiftOpenAI",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7090d164fecf51b5ca55000b054dd469e9eb9265"
+      }
+    },
+    {
       "identity" : "yams",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/jpsim/Yams",
