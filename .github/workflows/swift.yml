@@ -25,7 +25,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Create XCFramework
-      uses: segment-integrations/swift-create-xcframework@1.0.0
+      uses: unsignedapps/swift-create-xcframework@v2
       with:
         target: XCAOpenAIClient
     - name: Upload Release Asset
